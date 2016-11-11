@@ -65,4 +65,28 @@ Prompt will show when Figwheel connects to your application
 ```
 
 That means that your application is up and running, and you can point your browser
-to `http://localhost:3449`
+to `http://localhost:3449`. Once you do that, back on the terminal you will have
+a prompt that you can use to run clojurescript code on the browser. Try the following:
+
+```clojure
+(js/alert "I'm here!")
+```
+
+## Open up a server-side REPL
+
+While having a browser-connected REPL is fun, half of your app lives on the server.
+In order to open up a REPL connected to your application, you should open another
+terminal window (leaving the one with the running figwheel open!), `cd` to the
+project folder and then run:
+
+```
+lein repl :connect 7002
+```
+
+Please note that `7002` is the default port at which figwheel configures the nREPL
+server to listen to. This way, you can now also execute code on the same JVM instance
+that's running your app. Try the following:
+
+```clojure
+(Integer/parseInt "42")
+```
