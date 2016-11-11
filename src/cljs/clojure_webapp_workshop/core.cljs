@@ -2,17 +2,20 @@
     (:require [reagent.core :as reagent :refer [atom]]
               [reagent.session :as session]
               [secretary.core :as secretary :include-macros true]
-              [accountant.core :as accountant]))
+              [accountant.core :as accountant]
+              [ajax.core :as ajax]
+              [cljs.reader :refer [read-string]]))
+
+;; -------------------------
+;; State
+
+(def state (atom {:contacts []}))
 
 ;; -------------------------
 ;; Views
 
-(def contacts
-  [{:name "Carlo Sciolla"
-    :email "info@codehopper.nl"}])
-
 (defn contact-card [{:keys [name email] :as contact}]
-  [:li
+  [:li {:key (gensym)}
    [:dl
     [:dt "Name:"]
     [:dd name]
@@ -25,7 +28,7 @@
 
 (defn home-page []
   [:div [:h2 "My contacts"]
-   [contact-list contacts]
+   [contact-list (:contacts @state)]
    [:div [:a {:href "/about"} "go to about page"]]])
 
 (defn about-page []
@@ -59,4 +62,6 @@
      (fn [path]
        (secretary/locate-route path))})
   (accountant/dispatch-current!)
-  (mount-root))
+  (mount-root)
+  (ajax/GET "/api/contacts" {:handler (fn [body]
+                                        (swap! state assoc :contacts (read-string body)))}))
