@@ -64,15 +64,6 @@
               :source-map true
               :optimizations :none
               :pretty-print  true}}
-            :test
-            {:source-paths ["src/cljs" "src/cljc" "test/cljs"]
-             :compiler {:main clojure-webapp-workshop.doo-runner
-                        :asset-path "/js/out"
-                        :output-to "target/test.js"
-                        :output-dir "target/cljstest/public/js/out"
-                        :optimizations :whitespace
-                        :pretty-print true}}
-
             :devcards
             {:source-paths ["src/cljs" "src/cljc" "env/dev/cljs"]
              :figwheel {:devcards true}
@@ -82,9 +73,7 @@
                         :output-dir "target/cljsbuild/public/js/devcards_out"
                         :source-map-timestamp true
                         :optimizations :none
-                        :pretty-print true}}
-            }
-   }
+                        :pretty-print true}}}}
 
 
   :figwheel
@@ -93,8 +82,7 @@
    :nrepl-port 7002
    :nrepl-middleware ["cemerick.piggieback/wrap-cljs-repl"
                       "cider.nrepl/cider-middleware"
-                      "refactor-nrepl.middleware/wrap-refactor"
-                      ]
+                      "refactor-nrepl.middleware/wrap-refactor"]
    :css-dirs ["resources/public/css"]
    :ring-handler clojure-webapp-workshop.handler/app}
 
@@ -108,20 +96,16 @@
                                   [figwheel-sidecar "0.5.7"]
                                   [org.clojure/tools.nrepl "0.2.12"]
                                   [com.cemerick/piggieback "0.2.2-SNAPSHOT"]
-                                  [lein-doo "0.1.6"]
                                   [devcards "0.2.1-7"]
-                                  [pjstadig/humane-test-output "0.8.1"]
-                                  ]
+                                  [pjstadig/humane-test-output "0.8.1"]]
 
                    :source-paths ["env/dev/clj"]
                    :plugins [[lein-figwheel "0.5.7"]
-                             [lein-doo "0.1.6"]
-                             [cider/cider-nrepl "0.10.0-SNAPSHOT"]
+                             [cider/cider-nrepl "0.14.0"]
                              [org.clojure/tools.namespace "0.3.0-alpha2"
                               :exclusions [org.clojure/tools.reader]]
                              [refactor-nrepl "2.0.0-SNAPSHOT"
-                              :exclusions [org.clojure/clojure]]
-                             ]
+                              :exclusions [org.clojure/clojure]]]
 
                    :injections [(require 'pjstadig.humane-test-output)
                                 (pjstadig.humane-test-output/activate!)]
