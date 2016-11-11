@@ -7,8 +7,25 @@
 ;; -------------------------
 ;; Views
 
+(def contacts
+  [{:name "Carlo Sciolla"
+    :email "info@codehopper.nl"}])
+
+(defn contact-card [{:keys [name email] :as contact}]
+  [:li
+   [:dl
+    [:dt "Name:"]
+    [:dd name]
+    [:dt "Email:"]
+    [:dd email]]])
+
+(defn contact-list [contacts]
+  [:ul.contact-list
+   (map contact-card contacts)])
+
 (defn home-page []
   [:div [:h2 "My contacts"]
+   [contact-list contacts]
    [:div [:a {:href "/about"} "go to about page"]]])
 
 (defn about-page []
