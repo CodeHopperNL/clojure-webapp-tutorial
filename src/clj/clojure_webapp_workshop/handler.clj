@@ -26,6 +26,15 @@
      mount-target
      (include-js "/js/app.js")]))
 
+(def contacts
+  [{:name "Carlo Sciolla"
+    :email "info@codehopper.nl"}])
+
+(defn get-contacts []
+  {:status 200
+   :headers {"Content-Type" "application/edn"}
+   :body contacts})
+
 (defn cards-page []
   (html5
     (head)
@@ -37,6 +46,7 @@
   (GET "/" [] (loading-page))
   (GET "/about" [] (loading-page))
   (GET "/cards" [] (cards-page))
+  (GET "/api/contacts" [] (get-contacts))
   (resources "/")
   (not-found "Not Found"))
 
