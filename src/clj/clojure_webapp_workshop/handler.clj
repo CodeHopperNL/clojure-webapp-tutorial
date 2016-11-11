@@ -28,12 +28,14 @@
 
 (def contacts
   [{:name "Carlo Sciolla"
-    :email "info@codehopper.nl"}])
+    :email "info@codehopper.nl"}
+   {:name "John Doe"
+    :email "example@example.com"}])
 
 (defn get-contacts []
   {:status 200
    :headers {"Content-Type" "application/edn"}
-   :body contacts})
+   :body (str contacts)})
 
 (defn cards-page []
   (html5
