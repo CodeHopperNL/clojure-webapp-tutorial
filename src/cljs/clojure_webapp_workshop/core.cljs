@@ -8,7 +8,7 @@
 ;; Views
 
 (defn home-page []
-  [:div [:h2 "Welcome to clojure-webapp-workshop"]
+  [:div [:h2 "My contacts"]
    [:div [:a {:href "/about"} "go to about page"]]])
 
 (defn about-page []
