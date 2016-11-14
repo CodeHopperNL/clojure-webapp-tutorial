@@ -1,3 +1,6 @@
+> "It's a never ending dream for everyone it seems, to find again what was once precious and has been lost."
+> *Carolyn Turgeon, Mermaid*
+
 # Clojure webapp tutorial
 
 This tutorial is meant for clojure newbies to get their hands dirty with a simple
